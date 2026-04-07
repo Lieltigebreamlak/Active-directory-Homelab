@@ -190,6 +190,43 @@ DHCP is one of the most common help desk troubleshooting areas. Understanding ho
 - **IP conflicts** - understanding lease management
 - **New computer setup** - ensuring DHCP is working
 
+- ## ⚙️ Group Policy Objects (GPO) - In Progress
+
+I'm currently implementing Group Policy to manage workstation settings across the domain.
+
+### Working GPO
+| GPO Name | Target | Settings | Status |
+|----------|--------|----------|--------|
+| IT-Desktop Wallpaper | IT Users | Forces company wallpaper on desktop | ✅ Working |
+
+![Desktop Wallpaper Applied](screenshots/gpo-wallpaper-working.png)
+*IT user desktop showing forced wallpaper - proof that GPO application is working*
+
+### GPO Currently Troubleshooting
+| GPO Name | Target | Desired Settings | Status |
+|----------|--------|------------------|--------|
+| Screen Lock | Workstations | Screen saver timeout (10 min), password protect | 🔄 In Progress |
+
+### GPO Configuration Verified
+| Component | Status | Evidence |
+|-----------|--------|----------|
+| GPO Linked to Workstations OU | ✅ Correct | Screenshot shows link with Enforced = Yes |
+| Security Filtering | ✅ Correct | Authenticated Users included |
+| Permissions | ✅ Correct | Read access granted |
+| Loopback Processing | ✅ Enabled | Merge mode configured for user settings |
+
+![GPO Linked to Workstations](screenshots/gpo-linked-workstations.png)
+*Screen Lock GPO properly linked to Workstations OU*
+
+![GPO Security Filtering](screenshots/gpo-security-filtering.png)
+*Security filtering includes Authenticated Users*
+
+### Registry Settings (Local Test)
+Even though the GPO isn't fully applying yet, I verified the settings work locally:
+
+```cmd
+reg query "HKCU\Control Panel\Desktop" /v ScreenSaveActive
+
 
 
 ## 📫 Connect With Me
